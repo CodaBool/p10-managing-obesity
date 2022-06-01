@@ -15,9 +15,7 @@ export default function weight({ addWeight, setShowForm }) {
 
   const onSubmit = (data) => {
     if (data.weight && data.date) {
-      data.date = new Date(data.date)
-      data.unit = unit?.current?.value
-      addWeight(data)
+      window.alert('This is a sample, no data can be altered.')
     }
   }
 

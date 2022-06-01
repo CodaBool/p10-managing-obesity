@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { PlusSquare, XSquare, Calendar3, ArrowClockwise, PencilFill } from 'react-bootstrap-icons'
 import DateInput from '../form/DateInput'
-import axios from 'axios'
 
 export default function CustomTable({ headers, data, deleteField, mutate }) {
   const [spin, setSpin] = useState(false)
@@ -56,12 +55,7 @@ export default function CustomTable({ headers, data, deleteField, mutate }) {
       }
       if (obj.id) arr.push(obj)
     }
-    axios.put('/api/weight', arr)
-      .then(res => {
-        setEdit(false)
-        mutate()
-      })
-      .catch(console.log)
+    window.alert('This is a sample, no data can be altered.')
   }
 
   return (

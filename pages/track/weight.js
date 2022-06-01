@@ -1,32 +1,23 @@
 import { ArrowLeft } from 'react-bootstrap-icons'
 import Button from 'react-bootstrap/Button'
 import { useRouter } from 'next/router'
-import useSWR from 'swr'
-import axios from 'axios'
 import Form from '../../components/form/weight'
 import Table from '../../components/table/weight'
 import Toast from '../../components/Toast'
 import Graph from '../../components/graph/Weight'
 import { useState } from 'react'
+import { weight } from '../../constants/data'
 
-export default function weight() {
+export default function weightPage() {
   const [showForm, setShowForm] = useState()
   const [toast, setToast] = useState({show: false})
-  const { data, error, mutate } = useSWR('/api/weight', url => axios.get(url))
   const router = useRouter()
   const headers = ['Date', 'Weight', 'Unit']
 
   function addWeight(data) {
     setToast({show: false}) // remove error while waiting
-    axios.post('/api/weight', data)
-      .then(res => {
-        setShowForm(false)
-        setToast({show: true, msg: 'Successfully added a weight record', title: 'Weight record added', confetti: true})
-        mutate()
-      })
-      .catch(err => {
-        setToast({show: true, msg: err.response.data.msg, title: 'Error adding weight record', err: true})
-      })
+  }
+  function mutate() {
   }
 
   return (
@@ -35,13 +26,13 @@ export default function weight() {
         <ArrowLeft className="mb-1" size={18} /> 
       </Button>
       <h1 className='display-4 d-inline me-5'>Weight</h1>
-      <Graph data={data?.data} />
+      <Graph data={weight} />
       <br /><br />
       {!showForm && <Button onClick={() => setShowForm(true)} className="me-3 my-2">Add Record</Button>}
       {showForm && <Form setShowForm={setShowForm} addWeight={addWeight} />}
       <Table
         headers={headers}
-        data={data?.data}
+        data={weight}
         mutate={mutate}
       />
       <div style={{position: 'fixed', top: '80px', right: '10px'}}>

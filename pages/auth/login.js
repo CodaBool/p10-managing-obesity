@@ -7,15 +7,13 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import { useRouter } from 'next/router'
-import { getCsrfToken, signIn, useSession, getProviders } from 'next-auth/react'
 import useScreen from '../../constants/useScreen'
 import Toast from '../../components/Toast'
 import Load from '../../components/Load'
 import style from '../../styles/form.module.css'
 
-export default function Login({ csrfToken, providers }) {
+export default function Login({ }) {
   const screen = useScreen()
-  const { data: session, status } = useSession()
   const [option, setOption] = useState('')
   const [error, setError] = useState()
   const { register, handleSubmit, control, formState: { errors }, setValue } = useForm()
@@ -49,9 +47,9 @@ export default function Login({ csrfToken, providers }) {
   }, [option])
   
   const onSubmit = (data) => {
-    if (data.email && data.password && data.csrfToken) {
+    if (data.email && data.password) {
       const callbackUrl = router.query.callbackUrl || '/track'
-      signIn('credentials', { email: data.email, password: data.password, callbackUrl }) //callbackUrl
+      window.alert('This is a sample, authentication is unecessary.')
     }
   }
 
@@ -59,16 +57,7 @@ export default function Login({ csrfToken, providers }) {
     setOption('password')
     setValue('email', 'test@user.com')
     setValue('password', 'testuser')
-    signIn('credentials', {
-      email: 'test@user.com',
-      password: 'testuser',
-      callbackUrl: router.query.callbackUrl || '/track'
-    })
-  }
-
-  if (session) {
-    router.push('/track')
-    return <Load />
+    window.alert('This is a sample, authentication is unecessary.')
   }
   
   return (
@@ -88,13 +77,13 @@ export default function Login({ csrfToken, providers }) {
               </Button>
               <div className="border w-100 my-3"></div>
               <div className="d-flex" style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
-                {Object.values(providers).map(provider => (
+                {['Facebook', 'Github', 'Google', 'Twitter'].map(provider => (
                   <Button 
-                    onClick={() => signIn(provider.id, {callbackUrl: router.query.callbackUrl || '/track'})} 
-                    key={provider.name}
+                    onClick={() => window.alert('This is a sample, authentication is unecessary.')} 
+                    key={provider}
                     className="my-1 w-100"
                   >
-                      {provider.name}
+                      {provider}
                   </Button>
                 ))} 
               </div>
@@ -105,7 +94,6 @@ export default function Login({ csrfToken, providers }) {
               <Button variant="light" className="rounded-circle mb-4 border" onClick={() => setOption(null)} style={{width: '3rem', height: '3rem'}}>
                 <ArrowLeft className="mb-1" size={18} /> 
               </Button>
-              <input type='hidden' defaultValue={csrfToken} {...register('csrfToken')} />
               {errors.email && <p className="text-danger text-center">Please provide a valid email</p>}
               <div className={style.group}>
                 <input
@@ -136,7 +124,7 @@ export default function Login({ csrfToken, providers }) {
               <Row className="mt-4">
                 <Button 
                   variant="light" 
-                  onClick={() => router.push(`/auth/request`)} 
+                  onClick={() => window.alert('This is a sample, authentication is unecessary.')} 
                   className="mx-auto mb-2 darken-on-hover"
                 >
                   Forgot Password?
@@ -153,16 +141,6 @@ export default function Login({ csrfToken, providers }) {
           }
         </Card>
       </Col>
-      <Row>
-        <Button
-          className="mx-auto my-2"
-          variant="light"
-          style={{width: '10em'}}
-          onClick={devLogin}
-        >
-          Skip <ArrowReturnRight className="ml-2" size={18} />
-        </Button>
-      </Row>
       <div style={{position: 'fixed', top: '80px', right: '10px'}}>
         <Toast
           show={!!error}
@@ -174,14 +152,4 @@ export default function Login({ csrfToken, providers }) {
       </div>
     </Form>
   )
-}
-
-export async function getServerSideProps(context) {
-  const providers = await getProviders()
-  const csrfToken = await getCsrfToken(context)
-  delete providers.credentials
-  if (!csrfToken) return {props: {}}
-  return {
-    props: { csrfToken, providers }
-  }
 }

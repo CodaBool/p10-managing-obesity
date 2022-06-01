@@ -1,8 +1,6 @@
 import Toast from 'react-bootstrap/Toast'
 import Button from 'react-bootstrap/Button'
 import { useState, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
-import axios from 'axios'
 
 const MS_BETWEEN_DB_CHECKS = 300000 // 300000 = 5 minutes
 const NOTIFY_MIN_TIME = 2592000000 // 2592000000 = 30 days
@@ -10,7 +8,6 @@ const NOTIFY_MIN_TIME = 2592000000 // 2592000000 = 30 days
 // 86400000 = 1 day
 
 export default function Notification() {
-  const { data: session, status } = useSession()
   const [toast, setToast] = useState({show: false})
 
   function snooze() {
@@ -61,7 +58,7 @@ export default function Notification() {
     // update local storage to show that an appointment has been checked recently
     localStorage.setItem('lastNotifyCheck', new Date().getTime())
 
-    const notifications = await axios.get('/api/appointment').then(res => res.data).catch(console.log)
+    // const notifications = await axios.get('/api/appointment').then(res => res.data).catch(console.log)
     if (!notifications && notifications?.length === 0) return
     const upcoming = notifications.flatMap(notify => {
       if (!notify.suppress && !notify.cancelled) {
@@ -101,26 +98,6 @@ export default function Notification() {
     // console.log('event is less than', eventTimeCheck, 'days. Event in', time, unit)
     return [time, unit]
   }
-
-  useEffect(() => {
-    let interval
-    if (session && status !== 'loading') {
-      // do an initial check
-      checkStore(true)
-
-      // do a check every MS_BETWEEN_DB_CHECKS 
-      interval = setInterval(() => {
-        // console.log('now interval')
-        checkStore(false)
-      }, MS_BETWEEN_DB_CHECKS)
-    }
-
-    // cleanup memory
-    return () => {
-      clearInterval(interval)
-      interval = null
-    }
-  }, [session, status])
 
   return (
     <>

@@ -7,18 +7,12 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import { useRouter } from 'next/router'
-import axios from 'axios'
-import { signIn, useSession, getProviders } from 'next-auth/react'
-import ReCAPTCHA from 'react-google-recaptcha'
 import Load from '../../components/Load'
 import Toast from '../../components/Toast'
 import useScreen from '../../constants/useScreen'
 import style from '../../styles/form.module.css'
 
-let token = ''
-
 export default function Login() {
-  const { data: session, status } = useSession()
   const screen = useScreen()
   const [error, setError] = useState()
   const [submitting, setSubmitting] = useState()
@@ -26,47 +20,12 @@ export default function Login() {
   const router = useRouter()
 
   const onSubmit = (data) => {
-    setSubmitting(true)
     if (data.password !== data.passwordConfirm) return
-    if (data.email && data.password && token !== '') {
+    if (data.email && data.password) {
       const callbackUrl = router.query.callbackUrl || ''
-      axios.post('/api/user', {
-        email: data.email,
-        password: data.password,
-        token,
-      })
-      .then(res => {
-        signIn('credentials', {
-          email: data.email,
-          password: data.password,
-          callbackUrl
-        })
-      })
-      .catch(err => {
-        console.log('err', err)
-        // console.log('err', err.response.data.msg, typeof err)
-        // console.log('cast test', String(err).includes('Unique'))
-        // if (typeof err === 'string') {
-          if (err.response.data.msg.includes('Unique constraint')) {
-            setError('An account with this email already exists')
-          } else {
-            setError('Somthing went wrong, try again later')
-          }
-        // } 
-      })
-      .finally(() => {
-        // captcha.current?.reset()
-        setSubmitting(false)
-      })
+      window.alert('This is a sample, authentication is unecessary.')
     }
   }
-
-  if (session) {
-    router.push('/')
-    return <Load />
-  }
-
-  if (submitting) return <Load />
   
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -113,12 +72,6 @@ export default function Login() {
             <label><Key className="me-2 mb-1" size={20} />Retype Password</label>
           </div>
           <Row>
-            {!submitting && <ReCAPTCHA
-              theme='light'
-              sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
-              size={`${screen.includes('s') ? 'compact': 'normal'}`}
-              onChange={e => token = e }
-            />}
             {submitting 
               ? <Load />
               : <Button

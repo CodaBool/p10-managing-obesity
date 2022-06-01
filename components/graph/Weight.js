@@ -62,7 +62,7 @@ export default function WeightGraph({ data }) {
     const allYears = []
     const tempMonthlyData = []
     const obj = {...[...Array(12).keys()]}
-    const selectedYear = year || new Date().getFullYear()
+    const selectedYear = year || 2022
     Object.keys(obj).map(i => obj[i] = [])
 
     // add data for each month

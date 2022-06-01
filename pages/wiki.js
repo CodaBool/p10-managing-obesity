@@ -26,7 +26,7 @@ export default function About() {
       <p>Overweight and obesity are major risk factors for a number of chronic diseases, including cardiovascular diseases such as heart disease and stroke, which are the leading causes of death worldwide. Being overweight can also lead to diabetes and its associated conditions, including blindness, limb amputations, and the need for dialysis. Rates of diabetes have quadrupled since around the world since 1980. Carrying excess weight can lead to musculoskeletal disorders including osteoarthritis. Obesity is also associated with some cancers, including endometrial, breast, ovarian, prostate, liver, gallbladder, kidney and colon. The risk of these noncommunicable diseases increases even when a person is only slightly overweight and grows more serious as the body mass index (BMI) climbs.</p>
       <p>Obesity in childhood is associated with a wide range of serious health complications and an increased risk of premature onset of related illnesses. Studies have found that without intervention, children and adolescents with obesity will likely continue to be obese into adulthood.</p>
 
-      <h1>Links</h1>
+      <h1>Links:</h1>
       <a href="http://www.cdc.gov/obesity">CDC on obesity</a>
       <br />
       <a href="https://www.who.int/health-topics/obesity">WHO on obesity</a>

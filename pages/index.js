@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import KUTE from 'kute.js'
-import { useSession } from 'next-auth/react'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import { useRouter } from 'next/router'
@@ -9,7 +8,6 @@ import ExampleRadarGraph from '../components/graph/ExampleRadar'
 import ExampleBarGraph from '../components/graph/ExampleBar'
 
 export default function Index(props) {
-  const { data: session, status } = useSession()
   const router = useRouter()
 
   useEffect(() => {
@@ -33,12 +31,6 @@ export default function Index(props) {
     )
     tween1.start()
   }, [])
-  
-  if (session) {
-    console.log('found a session in landing page')
-    router.push('/track')
-    // return <Load />
-  }
 
   return (
     <div id="container">
@@ -90,38 +82,4 @@ export default function Index(props) {
       </div>
     </div>
   )
-}
-
-// server
-// import prisma from '../lib/prisma'
-import json from 'superjson'
-
-export const getServerSideProps = async ({ req }) => {
-  // console.log('auth header', req.headers.AUTHORIZATION)
-  // const userId = await getUserId(token)
-
-  // await prisma.user.create({
-  //   data: {
-  //     name: 'Alice',
-  //     email: 'alice@prisma.io',
-  //     posts: {
-  //       create: { title: 'Hello World' },
-  //     },
-  //     profile: {
-  //       create: { bio: 'I like turtles' },
-  //     }
-  //   }
-  // })
-  const posts = null
-  // const posts = await prisma.user.findMany({
-  //   where: {
-  //     email: 'alice@prisma.io'
-  //   },
-  //   include: {
-  //     posts: true,
-  //     profile: true,
-  //   },
-  // })
-  if (!posts) return { props: {} }
-  return { props: { posts: json.serialize(posts) } }
 }

@@ -43,8 +43,8 @@ export const options = {
 }
 
 export default function ExerciseGraph({ data }) {
-  const [month, setMonth] = useState(new Date().getMonth())
-  const [year, setYear] = useState(new Date().getFullYear())
+  const [month, setMonth] = useState(4)
+  const [year, setYear] = useState(2022)
   const [labels, setLabels] = useState([...Array(daysInThisMonth(new Date())).keys()].map(i => i+1))
   const [yearOptions, setYearOptions] = useState([])
   const [monthlyData, setMontlyData] = useState()
@@ -64,7 +64,7 @@ export default function ExerciseGraph({ data }) {
   }
 
   function daysInThisMonth(d) {
-    return new Date(d.getFullYear(), d.getMonth()+1, 0).getDate()
+    return new Date(2022, 5, 0).getDate()
   }
 
   function getMonthlyData() {

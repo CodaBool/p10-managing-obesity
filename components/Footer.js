@@ -1,7 +1,6 @@
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Img from 'next/image'
 
 export default function Footer({ path }) {
   return (
@@ -37,7 +36,7 @@ export default function Footer({ path }) {
         <Row className="ms-2">
           <div className="mx-auto" style={{maxWidth: '10rem'}}>
             <a href="https://github.com/codabool" className="me-3">
-              <Img
+              <img
                 src="/git-logo.jpg"
                 alt="github"
                 className="rounded-circle"
@@ -46,7 +45,7 @@ export default function Footer({ path }) {
                 />
             </a>
             <a href="https://twitter.com/coda_bool" className="me-3">
-              <Img
+              <img
                 src="/twitter-logo.jpg"
                 alt="twitter"
                 className="rounded-circle"

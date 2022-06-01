@@ -28,9 +28,3 @@ export default function Load({ msg, small }) {
     </>
   )
 }
-
-// export function isLoad(session, loading, required) {
-//   if (loading) return true
-//   if (session === null && !loading && required) { signIn(); return true }
-//   return false
-// }

@@ -15,9 +15,7 @@ export default function Exercise({ addExercise, setShowForm }) {
 
   const onSubmit = (data) => {
     if (data.length && data.date) {
-      data.date = new Date(data.date)
-      data.intensity = intensity?.current?.value
-      addExercise(data)
+      window.alert('This is a sample, no data can be altered.')
     }
   }
 

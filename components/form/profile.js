@@ -1,5 +1,4 @@
-import { useForm, Controller } from 'react-hook-form'
-import { X } from 'react-bootstrap-icons'
+import { useForm } from 'react-hook-form'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
@@ -8,23 +7,14 @@ import Toast from '../Toast'
 import { useState, useEffect } from 'react'
 import style from '../../styles/form.module.css'
 import { PersonFill, EnvelopeCheckFill, EnvelopeFill, ClipboardCheck, ClipboardData, ClipboardPlus, At, Calendar2DateFill, Clipboard2HeartFill, ClipboardFill, Activity, EggFill, Rulers, EggFried, PatchCheckFill, PencilFill } from 'react-bootstrap-icons'
-import axios from 'axios'
 
-export default function Profile({ d, mutate }) {
+export default function Profile({ d }) {
   const [edit, setEdit] = useState()
   const [toast, setToast] = useState({show: false})
   const { register, handleSubmit, control, formState: { errors }, setValue } = useForm()
 
   const onSubmit = data => {
-    axios.put('/api/user', data)
-      .then(res => {
-        setEdit(false)
-        setToast({show: true, msg: 'Successfully updated profile', title: 'Profile Updated', confetti: true})
-        mutate()
-      })
-      .catch(err => {
-        setToast({show: true, msg: err.response.data.msg, title: 'Profile update error', err: true})
-      })
+    window.alert('This is a sample, no data can be altered.')
   }
 
   return (

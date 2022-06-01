@@ -12,8 +12,7 @@ export default function Diet({ addDiet, setShowForm }) {
 
   const onSubmit = (data) => {
     if (data.calories && data.date) {
-      data.date = new Date(data.date)
-      addDiet(data)
+      window.alert('This is a sample, no data can be altered.')
     }
   }
 
