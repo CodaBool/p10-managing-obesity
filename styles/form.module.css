@@ -1,0 +1,50 @@
+.group { 
+  position:relative; 
+  margin-bottom:45px;
+  width: 100%;
+}
+.group input {
+  width: 100%;
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+.group input:focus {
+  outline:none;
+}
+.group label {
+  color: #4d4d4d;
+  font-size: 16px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 300ms ease all;
+}
+/* Form > input (active state) */
+.group input:focus ~ label, .group input:valid ~ label {
+  top: -14px;
+  font-size: 12px;
+  color: #0062cc;
+}
+.group input:focus ~ .bar:before {
+  width: 100%;
+}
+.bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.bar:before {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 0px;
+  position: absolute;
+  background: #0062cc;
+  transition: 300ms ease all;
+  left: 0%;
+}
