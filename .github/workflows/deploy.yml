@@ -29,6 +29,4 @@ jobs:
         run: npm run export
 
       - name: Deploy to AWS
-        run: |
-          npm run export
-          aws s3 sync ./out s3://p10-managing-obesity --delete
+        run: aws s3 sync ./out s3://p10-managing-obesity --delete
