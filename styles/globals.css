@@ -63,7 +63,7 @@ main {
 }
 .canvas-container:hover p {
   /* calc(1.625rem + 4.5vw) */
-  font-size: calc(2rem + 2.7vw);
+  font-size: calc(1.8rem + 2.2vw);
 }
 .canvas-container {
   position: relative;

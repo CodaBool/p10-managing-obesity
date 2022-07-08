@@ -111,7 +111,7 @@ export default function Graph({ d }) {
       datasets: [
         {
           label: 'Performance',
-          data,
+          data: [80, 70, 40],
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
           borderColor: 'rgba(255, 99, 132, 1)',
           borderWidth: 4,
