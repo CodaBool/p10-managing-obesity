@@ -18,25 +18,25 @@ export default function Header() {
           color: rgb(232, 230, 227) !important;
         }
       `}</style>
-      <Link href="/">
+      <Link href="/" legacyBehavior>
         <a className='navbar-brand'>Intro</a>
       </Link>
-      <Link href="/track">
+      <Link href="/track" legacyBehavior>
         <a className='navbar-brand'>Home</a>
       </Link>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">
-          <Link href="/wiki">
+          <Link href="/wiki" legacyBehavior>
             <a className={`${active('/wiki') && 'active-link'} nav-link`}>Wiki</a>
           </Link>
-          <Link href="/appointments">
+          <Link href="/appointments" legacyBehavior>
             <a className={`${active('/appointments') && 'active-link'} nav-link`}>Appointments</a>
           </Link>
-          <Link href="/profile">
+          <Link href="/profile" legacyBehavior>
             <a className={`${active('/profile') && 'active-link'} nav-link`}>Profile</a>
           </Link>
-          <Link href="/auth/login">
+          <Link href="/auth/login" legacyBehavior>
             <a className={`${active('/auth/login') && 'active-link'} nav-link`}>Login</a>
           </Link>
         </Nav>
