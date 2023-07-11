@@ -1,7 +1,12 @@
 # Managing Obesity
+> a live sample version of this site if viewable [here](p10.codabool.com)
+
 US obesity prevalence was 42% in 2017 – 2018 ([source](https://www.cdc.gov/obesity/data/adult.html)).
 
 This app seeks to provide a tool to manage obesity.
+
+# 🖊️ Details
+> I have a blog post which has more details about how and why this was made [here](https://codabool.com/blog/24)
 
 ### The Data
 This app uses a dataset for its graphs involving BMI.
